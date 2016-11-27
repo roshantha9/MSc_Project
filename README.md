@@ -1,9 +1,13 @@
 # MSc.-Project
 MSc. (DSE UoY) project documentation and partial source code
 
-(some files may be fragmented/corrupted as my hard disk failed before pushing to git)
+* My contribution was the imeplementation of a software-based audio decoder (libmad-mp3, adpcm) and software/hardware integration and testing within the overall project. Opensource audio decoders were ported as part of this project. 
 
-* Individual Project report included in /Documentation/
+Please check Individual Project report included in /Documentation/ for full description of project.
+
+(NB: some files may be fragmented/corrupted as my hard disk failed before pushing to git)
+
+
 
 Bellow are a list source code that are included in this folder:
 
