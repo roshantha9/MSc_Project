@@ -1,4 +1,4 @@
-# MSc.-Project
+# MSc_Project
 MSc. (DSE UoY) project documentation and partial source code
 
 * My contribution was the imeplementation of a software-based audio decoder (libmad-mp3, adpcm) and software/hardware integration and testing within the overall project. Opensource audio decoders were ported as part of this project. 
