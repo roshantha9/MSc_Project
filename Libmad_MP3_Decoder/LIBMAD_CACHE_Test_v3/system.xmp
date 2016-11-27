@@ -1,0 +1,85 @@
+#Please do not modify this file by hand
+XmpVersion: 10.1.03
+VerMgmt: 10.1.03
+IntStyle: default
+MHS File: system.mhs
+MSS File: system.mss
+NPL File: projnav/system.ise
+Architecture: spartan3e
+Device: xc3s1200e
+Package: fg400
+SpeedGrade: -4
+UserCmd1: 
+UserCmd1Type: 0
+UserCmd2: 
+UserCmd2Type: 0
+TopInst: system_i
+GenSimTB: 0
+InsertNoPads: 0
+WarnForEAArch: 1
+HdlLang: VHDL
+Simulator: mti
+SimModel: BEHAVIORAL
+MixLangSim: 1
+UcfFile: data/system.ucf
+FpgaImpMode: 0
+EnableParTimingError: 1
+EnableResetOptimization: 0
+ShowLicenseDialog: 1
+Processor: microblaze_0
+BootLoop: 1
+XmdStub: 0
+SwProj: TestApp
+Processor: microblaze_0
+Executable: TestApp/executable.elf
+Source: TestApp/TestApp.c
+Source: TestApp/libmad-0.15.1b/version.c
+Source: TestApp/libmad-0.15.1b/bit.c
+Source: TestApp/libmad-0.15.1b/decoder.c
+Source: TestApp/libmad-0.15.1b/fixed.c
+Source: TestApp/libmad-0.15.1b/frame.c
+Source: TestApp/libmad-0.15.1b/huffman.c
+Source: TestApp/libmad-0.15.1b/layer3.c
+Source: TestApp/libmad-0.15.1b/stream.c
+Source: TestApp/libmad-0.15.1b/synth.c
+Source: TestApp/libmad-0.15.1b/timer.c
+Source: TestApp/autmr.c
+Source: TestApp/DAC.c
+Header: TestApp/libmad-0.15.1b/bit.h
+Header: TestApp/libmad-0.15.1b/COMMON.h
+Header: TestApp/libmad-0.15.1b/config.h
+Header: TestApp/libmad-0.15.1b/decoder.h
+Header: TestApp/libmad-0.15.1b/fixed.h
+Header: TestApp/libmad-0.15.1b/frame.h
+Header: TestApp/libmad-0.15.1b/global.h
+Header: TestApp/libmad-0.15.1b/huffman.h
+Header: TestApp/libmad-0.15.1b/layer3.h
+Header: TestApp/libmad-0.15.1b/mad.h
+Header: TestApp/libmad-0.15.1b/stream.h
+Header: TestApp/libmad-0.15.1b/synth.h
+Header: TestApp/libmad-0.15.1b/timer.h
+Header: TestApp/libmad-0.15.1b/version.h
+Header: TestApp/libmad-0.15.1b/sf_table.dat
+Header: TestApp/libmad-0.15.1b/imdct_l_arm.S
+Header: TestApp/libmad-0.15.1b/D.dat
+Header: TestApp/libmad-0.15.1b/imdct_s.dat
+Header: TestApp/libmad-0.15.1b/qc_table.dat
+Header: TestApp/libmad-0.15.1b/rq_table.dat
+Header: TestApp/autmr.h
+Header: TestApp/DAC.h
+Header: TestApp/SDRAM.h
+Header: TestApp/samples/speech_sample_16KHz.h
+DefaultInit: EXECUTABLE
+InitBram: 0
+Active: 1
+CompilerOptLevel: 2
+GlobPtrOpt: 0
+DebugSym: 1
+ProfileFlag: 0
+ProgStart: 0x86000000
+StackSize: 0x1600
+HeapSize: 0x19000
+LinkerScript: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0

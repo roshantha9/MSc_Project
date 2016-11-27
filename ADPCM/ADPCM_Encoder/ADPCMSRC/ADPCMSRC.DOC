@@ -1,0 +1,34 @@
+        Hi!
+
+        This archive (ADPCMSRC.ZIP) contains the source code for
+        ADPCM 4:1 coder and decoder, for both mono sample data
+        (the original code) and stereo data (my modification).
+
+        The files in this archive are:
+
+        ADPCM.SH        The original net message, containing ADPCM
+                        coder and decoder in a shell archive for
+                        Sun etc. workstations.
+
+        ADPCM.C         Mono ADPCM 4:1 coder and decoder (for IBM PC
+                        compatible machines).
+
+        ADPCM.H         Header file for mono ADPCM compression.
+
+        TESTC.C         Test mono compressor source.
+
+        TESTD.C         Test mono decoder source.
+
+        ADPCM_S.C       Stereo ADPCM 4:1 coder and decoder source
+                        (Modified from ADPCM.C by Patrick Aalto).
+
+        TESTC_S.C       Test stereo compressor source.
+
+        TESTD_S.C       Test stereo decoder source.
+
+        I cannot assume any copyrights or such for my modifications,
+        since they were such a trivial add-on to the original
+        algorithm.
+
+        Patrick Aalto
+        ap@jyu.fi

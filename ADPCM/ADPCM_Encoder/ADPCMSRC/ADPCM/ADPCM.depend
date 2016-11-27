@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1313686238 source:d:\cygwin\home\dse\adpcm\adpcmsrc\testc.c
+	"adpcm.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dos.h>
+
+1313686364 d:\cygwin\home\dse\adpcm\adpcmsrc\adpcm.h
+
+1312389993 source:d:\cygwin\home\dse\adpcm\adpcmsrc\testd.c
+	"adpcm.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<dos.h>
+
+1189868556 source:d:\cygwin\home\dse\adpcm\adpcmsrc\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1313686158 source:d:\cygwin\home\dse\adpcm\adpcmsrc\adpcm.c
+	"adpcm.h"
+

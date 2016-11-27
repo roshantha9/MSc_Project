@@ -1,0 +1,20 @@
+minimad_orig.exe
+----------------
+
+minimad_default.exe
+-------------------
+default FPM version
+
+minimad_wo_ch1.exe
+------------------
+all unimportant c headers removed.
+except stdlib, stdio
+
+minimad_wo_ch2.exe
+------------------
+replaced memcpy, memmove
+removed stdio.h
+
+minimad_wo_L12.exe
+------------------
+removed layers 1 and 2

@@ -1,0 +1,260 @@
+
+# ##############################################################################
+# Created by Base System Builder Wizard for Xilinx EDK 10.1.03 Build EDK_K_SP3.6
+# Tue Aug 16 14:01:54 2011
+# Target Board:  Custom
+# Family:    spartan3e
+# Device:    xc3s1200e
+# Package:   fg400
+# Speed Grade:  -4
+# Processor: microblaze_0
+# System clock frequency: 66.00 MHz
+# On Chip Memory :  32 KB
+# ##############################################################################
+ PARAMETER VERSION = 2.1.0
+
+
+ PORT fpga_0_RS232_RX_pin = fpga_0_RS232_RX, DIR = I
+ PORT fpga_0_RS232_TX_pin = fpga_0_RS232_TX, DIR = O
+ PORT sys_clk_pin = dcm_clk_s, DIR = I, SIGIS = CLK, CLK_FREQ = 66000000
+ PORT sys_rst_pin = sys_rst_s, DIR = I, RST_POLARITY = 1, SIGIS = RST
+ PORT xps_spi_0_SS_pin = xps_spi_0_SS, DIR = IO, VEC = [0:0]
+ PORT xps_spi_0_MOSI_pin = xps_spi_0_MOSI, DIR = IO
+ PORT xps_spi_0_SCK_pin = xps_spi_0_SCK, DIR = IO
+ PORT xps_spi_0_MISO = xps_spi_0_MISO, DIR = IO
+ PORT mpmc_0_SDRAM_Addr_pin = mpmc_0_SDRAM_Addr, DIR = O, VEC = [12:0]
+ PORT mpmc_0_SDRAM_BankAddr_pin = mpmc_0_SDRAM_BankAddr, DIR = O, VEC = [1:0]
+ PORT mpmc_0_SDRAM_WE_n_pin = mpmc_0_SDRAM_WE_n, DIR = O
+ PORT mpmc_0_SDRAM_CAS_n_pin = mpmc_0_SDRAM_CAS_n, DIR = O
+ PORT mpmc_0_SDRAM_RAS_n_pin = mpmc_0_SDRAM_RAS_n, DIR = O
+ PORT mpmc_0_SDRAM_CS_n_pin = mpmc_0_SDRAM_CS_n, DIR = O, VEC = [0:0]
+ PORT mpmc_0_SDRAM_CE_pin = mpmc_0_SDRAM_CE, DIR = O, VEC = [0:0]
+ PORT mpmc_0_SDRAM_Clk_pin = mpmc_0_SDRAM_Clk, DIR = O, VEC = [0:0], SIGIS = CLK
+ PORT mpmc_0_SDRAM_DQ = mpmc_0_SDRAM_DQ, DIR = IO, VEC = [7:0]
+ PORT mpmc_0_SDRAM_DM_pin = mpmc_0_SDRAM_DM, DIR = O, VEC = [0:0]
+ PORT xps_spi_1_SS_pin = xps_spi_1_SS, DIR = IO, VEC = [0:0]
+ PORT xps_spi_1_MOSI_pin = xps_spi_1_MOSI, DIR = IO
+ PORT xps_spi_1_MISO_pin = xps_spi_1_MISO, DIR = IO
+ PORT xps_spi_1_SCK_pin = xps_spi_1_SCK, DIR = IO
+
+
+BEGIN microblaze
+ PARAMETER INSTANCE = microblaze_0
+ PARAMETER HW_VER = 7.10.d
+ PARAMETER C_DEBUG_ENABLED = 1
+ PARAMETER C_AREA_OPTIMIZED = 1
+ PARAMETER C_USE_ICACHE = 1
+ PARAMETER C_ICACHE_BASEADDR = 0x86000000
+ PARAMETER C_ICACHE_HIGHADDR = 0x86FFFFFF
+ PARAMETER C_USE_DCACHE = 1
+ PARAMETER C_DCACHE_BASEADDR = 0x86000000
+ PARAMETER C_DCACHE_HIGHADDR = 0x86FFFFFF
+ PARAMETER C_FAMILY = spartan3e
+ PARAMETER C_INSTANCE = microblaze_0
+ PARAMETER C_CACHE_BYTE_SIZE = 16384
+ BUS_INTERFACE DPLB = mb_plb
+ BUS_INTERFACE IPLB = mb_plb
+ BUS_INTERFACE DEBUG = microblaze_0_dbg
+ BUS_INTERFACE DXCL = microblaze_0_DXCL
+ BUS_INTERFACE IXCL = microblaze_0_IXCL
+ BUS_INTERFACE DLMB = dlmb
+ BUS_INTERFACE ILMB = ilmb
+ PORT MB_RESET = mb_reset
+ PORT INTERRUPT = xps_intc_0_Irq
+END
+
+BEGIN plb_v46
+ PARAMETER INSTANCE = mb_plb
+ PARAMETER HW_VER = 1.03.a
+ PORT PLB_Clk = sys_clk_s
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_v10
+ PARAMETER INSTANCE = ilmb
+ PARAMETER HW_VER = 1.00.a
+ PORT LMB_Clk = sys_clk_s
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_v10
+ PARAMETER INSTANCE = dlmb
+ PARAMETER HW_VER = 1.00.a
+ PORT LMB_Clk = sys_clk_s
+ PORT SYS_Rst = sys_bus_reset
+END
+
+BEGIN lmb_bram_if_cntlr
+ PARAMETER INSTANCE = dlmb_cntlr
+ PARAMETER HW_VER = 2.10.a
+ PARAMETER C_BASEADDR = 0x00000000
+ PARAMETER C_HIGHADDR = 0x00001fff
+ BUS_INTERFACE SLMB = dlmb
+ BUS_INTERFACE BRAM_PORT = dlmb_port
+END
+
+BEGIN lmb_bram_if_cntlr
+ PARAMETER INSTANCE = ilmb_cntlr
+ PARAMETER HW_VER = 2.10.a
+ PARAMETER C_BASEADDR = 0x00000000
+ PARAMETER C_HIGHADDR = 0x00001fff
+ BUS_INTERFACE SLMB = ilmb
+ BUS_INTERFACE BRAM_PORT = ilmb_port
+END
+
+BEGIN bram_block
+ PARAMETER INSTANCE = lmb_bram
+ PARAMETER HW_VER = 1.00.a
+ BUS_INTERFACE PORTA = ilmb_port
+ BUS_INTERFACE PORTB = dlmb_port
+END
+
+BEGIN xps_uartlite
+ PARAMETER INSTANCE = RS232
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BAUDRATE = 9600
+ PARAMETER C_DATA_BITS = 8
+ PARAMETER C_ODD_PARITY = 1
+ PARAMETER C_USE_PARITY = 0
+ PARAMETER C_SPLB_CLK_FREQ_HZ = 66000000
+ PARAMETER C_BASEADDR = 0x84000000
+ PARAMETER C_HIGHADDR = 0x8400ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT RX = fpga_0_RS232_RX
+ PORT TX = fpga_0_RS232_TX
+END
+
+BEGIN clock_generator
+ PARAMETER INSTANCE = clock_generator_0
+ PARAMETER HW_VER = 2.01.a
+ PARAMETER C_EXT_RESET_HIGH = 1
+ PARAMETER C_CLKIN_FREQ = 66000000
+ PARAMETER C_CLKOUT0_FREQ = 66000000
+ PARAMETER C_CLKOUT0_BUF = TRUE
+ PARAMETER C_CLKOUT0_PHASE = 0
+ PARAMETER C_CLKOUT0_GROUP = NONE
+ PARAMETER C_CLKIN_BUF = FALSE
+ PARAMETER C_CLKOUT1_FREQ = 66000000
+ PARAMETER C_CLKOUT1_PHASE = 90
+ PARAMETER C_CLKOUT1_GROUP = NONE
+ PARAMETER C_CLKOUT1_BUF = TRUE
+ PORT CLKOUT0 = sys_clk_s
+ PORT CLKIN = dcm_clk_s
+ PORT LOCKED = Dcm_all_locked
+ PORT RST = net_gnd
+ PORT CLKOUT1 = clock_generator_0_CLKOUT1
+END
+
+BEGIN mdm
+ PARAMETER INSTANCE = debug_module
+ PARAMETER HW_VER = 1.00.d
+ PARAMETER C_MB_DBG_PORTS = 1
+ PARAMETER C_USE_UART = 1
+ PARAMETER C_UART_WIDTH = 8
+ PARAMETER C_BASEADDR = 0x84400000
+ PARAMETER C_HIGHADDR = 0x8440ffff
+ BUS_INTERFACE SPLB = mb_plb
+ BUS_INTERFACE MBDEBUG_0 = microblaze_0_dbg
+ PORT Debug_SYS_Rst = Debug_SYS_Rst
+END
+
+BEGIN proc_sys_reset
+ PARAMETER INSTANCE = proc_sys_reset_0
+ PARAMETER HW_VER = 2.00.a
+# PARAMETER C_EXT_RESET_HIGH = 0
+ PORT Slowest_sync_clk = sys_clk_s
+ PORT Dcm_locked = Dcm_all_locked
+ PORT Ext_Reset_In = sys_rst_s
+ PORT MB_Reset = mb_reset
+ PORT Bus_Struct_Reset = sys_bus_reset
+ PORT MB_Debug_Sys_Rst = Debug_SYS_Rst
+ PORT Peripheral_Reset = sys_periph_reset
+END
+
+BEGIN mpmc
+ PARAMETER INSTANCE = mpmc_0
+ PARAMETER HW_VER = 4.03.a
+ PARAMETER C_MEM_PARTNO = MT48LC32M8A2-7E
+ PARAMETER C_MPMC_CLK0_PERIOD_PS = 7500
+ PARAMETER C_MEM_TYPE = SDRAM
+ PARAMETER C_MEM_DATA_WIDTH = 8
+ PARAMETER C_PIM0_BASETYPE = 1
+ PARAMETER C_PIM1_BASETYPE = 1
+ PARAMETER C_PIM2_BASETYPE = 2
+ PARAMETER C_XCL0_WRITEXFER = 0
+ PARAMETER C_NUM_PORTS = 3
+ PARAMETER C_MPMC_BASEADDR = 0x86000000
+ PARAMETER C_MPMC_HIGHADDR = 0x87ffffff
+ BUS_INTERFACE SPLB2 = mb_plb
+ BUS_INTERFACE XCL1 = microblaze_0_DXCL
+ BUS_INTERFACE XCL0 = microblaze_0_IXCL
+ PORT SDRAM_DM = mpmc_0_SDRAM_DM
+ PORT SDRAM_DQ = mpmc_0_SDRAM_DQ
+ PORT SDRAM_Addr = mpmc_0_SDRAM_Addr
+ PORT SDRAM_BankAddr = mpmc_0_SDRAM_BankAddr
+ PORT SDRAM_WE_n = mpmc_0_SDRAM_WE_n
+ PORT SDRAM_CAS_n = mpmc_0_SDRAM_CAS_n
+ PORT SDRAM_RAS_n = mpmc_0_SDRAM_RAS_n
+ PORT SDRAM_CS_n = mpmc_0_SDRAM_CS_n
+ PORT SDRAM_CE = mpmc_0_SDRAM_CE
+ PORT SDRAM_Clk = mpmc_0_SDRAM_Clk
+ PORT MPMC_Clk90 = clock_generator_0_CLKOUT1
+ PORT MPMC_Clk0 = sys_clk_s
+ PORT MPMC_Rst = sys_rst_s
+END
+
+BEGIN xps_intc
+ PARAMETER INSTANCE = xps_intc_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x81800000
+ PARAMETER C_HIGHADDR = 0x8180ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT Irq = xps_intc_0_Irq
+ PORT Intr = xps_timer_0_Interrupt
+END
+
+BEGIN xps_spi
+ PARAMETER INSTANCE = xps_spi_0
+ PARAMETER HW_VER = 2.00.b
+ PARAMETER C_SCK_RATIO = 16
+ PARAMETER C_NUM_TRANSFER_BITS = 32
+ PARAMETER C_BASEADDR = 0x83420000
+ PARAMETER C_HIGHADDR = 0x8342ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT SS = xps_spi_0_SS
+ PORT MOSI = xps_spi_0_MOSI
+ PORT SCK = xps_spi_0_SCK
+ PORT MISO = xps_spi_0_MISO
+END
+
+BEGIN xps_spi
+ PARAMETER INSTANCE = xps_spi_1
+ PARAMETER HW_VER = 2.00.b
+ PARAMETER C_SCK_RATIO = 4
+ PARAMETER C_BASEADDR = 0x83400000
+ PARAMETER C_HIGHADDR = 0x8340ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT SS = xps_spi_1_SS
+ PORT MOSI = xps_spi_1_MOSI
+ PORT MISO = xps_spi_1_MISO
+ PORT SCK = xps_spi_1_SCK
+END
+
+BEGIN xps_timer
+ PARAMETER INSTANCE = xps_timer_0
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x83c20000
+ PARAMETER C_HIGHADDR = 0x83c2ffff
+ BUS_INTERFACE SPLB = mb_plb
+ PORT CaptureTrig1 = net_gnd
+ PORT Interrupt = xps_timer_0_Interrupt
+END
+
+BEGIN xps_timer
+ PARAMETER INSTANCE = timer_1
+ PARAMETER HW_VER = 1.00.a
+ PARAMETER C_BASEADDR = 0x83c00000
+ PARAMETER C_HIGHADDR = 0x83c0ffff
+ BUS_INTERFACE SPLB = mb_plb
+END
+

@@ -1,0 +1,17 @@
+PROMGEN: Xilinx Prom Generator K.39
+Copyright (c) 1995-2008 Xilinx, Inc.  All rights reserved.
+
+promgen -w -p mcs -c FF -o C:/JF_PCB_Tests/RS232_Test_2//rs232_test_prom -u 0 C:/JF_PCB_Tests/RS232_Test_2/implementation/download_cclktemp.bit -x xcf04s 
+
+PROM C:/JF_PCB_Tests/RS232_Test_2//rs232_test_prom.prm map: Mon Jul 18 21:45:32 2011
+
+Calculating PROM checksum with fill value ff
+
+Format        Mcs86 (32-bit)
+Size          512K
+PROM start    0000:0000
+PROM end      0007:ffff
+PROM checksum 00d6742c
+
+        Addr1        Addr2                     Date File(s)
+    0000:0000    0007:5393     Jul 18 21:45:18 2011 C:/JF_PCB_Tests/RS232_Test_2/implementation/download_cclktemp.bit

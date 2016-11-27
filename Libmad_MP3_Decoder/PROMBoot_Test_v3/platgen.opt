@@ -1,0 +1,5 @@
+-p
+xc3s1200efg400-4
+-lang
+vhdl
+system.mhs
